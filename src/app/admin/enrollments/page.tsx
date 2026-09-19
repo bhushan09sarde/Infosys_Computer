@@ -1,0 +1,5 @@
+import { EnrollmentsManager } from "@/components/admin/enrollments-manager";
+import { courses } from "@/data/courses";
+import { getAdmin } from "@/lib/admin";
+export const dynamic="force-dynamic";
+export default async function AdminEnrollmentsPage(){const admin=await getAdmin();if(!admin)return null;const [{data:students},{data:enrollments,error}]=await Promise.all([admin.supabase.from("profiles").select("id,full_name,email").eq("role","student").order("full_name"),admin.supabase.from("student_enrollments").select("id,student_id,course_code,course_name,course_category,status,enrolled_at").order("enrolled_at",{ascending:false})]);return <div><header className="admin-page-heading"><div><p className="eyebrow"><span/> Learning records</p><h1>Course Assignments</h1><p>Assign only verified catalogue courses and maintain each student&apos;s enrollment state.</p></div></header>{error?<p className="admin-notice admin-notice-error">{error.message}</p>:<EnrollmentsManager students={students??[]} courses={courses.map(({id,name,category})=>({id,name,category}))} enrollments={enrollments??[]}/>}</div>}

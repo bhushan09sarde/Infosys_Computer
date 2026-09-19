@@ -1,0 +1,6 @@
+import Link from "next/link";
+import { StudentIcon } from "@/components/student/student-icon";
+
+export default function StudentSupportPage() {
+  return <div className="portal-list-page"><header className="portal-page-heading"><div><p className="eyebrow"><span /> Student help</p><h1>Support</h1><p>Get help with your account, course access, or learning resources.</p></div></header><div className="support-options"><article><span><StudentIcon name="support" /></span><h2>Contact the institute</h2><p>Use the website contact page to send an enquiry to the Infosys Computer team.</p><Link href="/contact">Open Contact page</Link></article><article><span><StudentIcon name="events" /></span><h2>Visit the center</h2><p>Navneet Nagar, Amravati Road, Defence Gate No. 2, 8th Mile, Nagpur – 440023, Maharashtra, India.</p><small>MKCL Authorized Learning Center · ALC Code 14210309</small></article><article><span><StudentIcon name="materials" /></span><h2>Resource assistance</h2><p>If a document is missing or will not open, share its displayed title and course with the institute team. Never share your password.</p><Link href="/student/materials">Return to Study Materials</Link></article></div></div>;
+}
